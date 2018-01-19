@@ -2,7 +2,8 @@
 * Cache Class
 *
 * Accepts ( Promise function for fetching the requested ID parameter )
-*  - Returns a matching "cache item" or "new cache item"
+*
+* Returns a matching "cache item" or "new cache item"
 */
 class Cache {
 	constructor (callback) {
