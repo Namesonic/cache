@@ -34,7 +34,8 @@ The callback function can accept paramters, in this example, the UNIQUE ID of th
 ```
 (id) => {
   return new Promise((resolve, reject) => {
-    // Your code here...
+    // Resolve with data to be cached
+    resolve({id: 4, name: 'test item'})
   })
 }
 ```
