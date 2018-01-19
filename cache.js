@@ -5,8 +5,20 @@
 * Accepts ( Promise function for fetching the requested ID parameter )
 *
 * eg.  let Members = new Cache( (id) => {
-    return API.get('member/' + id)
+    return axios.get('member/' + id)
   })
+*
+* eg. let Items = new Cache( (id) => {
+			return new Promise((resolve, reject) => {
+      	setTimeout(() => {
+            if (dataSource.find((data) => data.id == id)) {
+            	resolve(dataSource.find((data) => data.id == id))
+            } else {
+            	reject('This not found')
+            }
+        }, 2000)
+      })
+})
 *
 * Returns a matching "cache item" or "new cache item"
 *
@@ -38,8 +50,10 @@ class Cache {
         })
         .catch((err) => {
           let i = this.has(id)
-          i._cache.ready = true
-          i._cache.error = err
+          if (i) {
+            i._cache.ready = true
+            i._cache.error = err
+          }
         })
 
       return this._items.push({
