@@ -16,7 +16,7 @@ class Cache {
 		.then((resp) => {
 			item.name = resp.name
 			item.data = resp.data
-		}
+		})
 	}
     	
 	return this._items.push({id: id, name: 'Item #' + id + '...', _cache: { loading: true }})
