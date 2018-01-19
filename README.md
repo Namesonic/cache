@@ -1,10 +1,14 @@
 # Cache Class
 
-Useful for managing reactive references to a list of cached items that were/were not retrieved via promise.
+Useful javascript class for managing reactive references to a list of cached items that were/were not retrieved via promise.
 
 The find(id) method either fetches, or returns the cached item so that components sharing a list can maintain a reactive reference to the original item.
 
+Meant for use with VueJs
+
 Demo https://jsfiddle.net/oshaggy/w6qnonha/
+
+## Usage
 
 ```
 data () {
