@@ -23,12 +23,11 @@ class Cache {
 			item.name = resp.name
 			item.data = resp.data
 		})
-	}
     	
-	return this._items.push({id: id, name: 'Item #' + id + '...', _cache: { loading: true }})
-    } else {
-    	return item
-    }
+		return this._items.push({id: id, name: 'Item #' + id + '...', _cache: { loading: true }})
+	    } else {
+		return item
+	    }
   }
   
   get all () {
