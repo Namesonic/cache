@@ -4,6 +4,10 @@
 * Accepts ( Promise function for fetching the requested ID parameter )
 *
 * Returns a matching "cache item" or "new cache item"
+*
+* - can be extended into Cache types like
+*	class MemberCache extends Cache ()
+*
 */
 class Cache {
 	constructor (callback) {
