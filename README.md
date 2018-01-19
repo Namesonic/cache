@@ -1,8 +1,8 @@
 # Cache Class
 
-Useful for referencing a source of cached items, that are retrieved on demand, from an API's promise.
+Useful for managing reactive references to a list of cached items that were/were not retrieved via promise.
 
-The UNIQUE key "id" is used to keep track of the cached items that are being referenced by components thus preserving reactivity.
+The find(id) method either fetches, or returns the cached item so that components sharing a list can maintain a reactive reference to the original item.
 
 Demo https://jsfiddle.net/oshaggy/w6qnonha/
 
