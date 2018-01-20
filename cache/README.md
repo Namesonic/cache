@@ -53,6 +53,8 @@ The cache class holds an array of item objects.  Item objects contain the follow
   <dd>Has the loading of the cached item completed?</dd>
   <dt>_error</dt>
   <dd>An error message if an exception occurred</dd>
+  <dt>_data</dt>
+  <dd>The actual data that the item represents</dd>
 </dl>
 
 ## Methods
