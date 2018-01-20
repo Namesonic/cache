@@ -1,5 +1,8 @@
 # Javascript Tools
 
+* Cached Item Promises
+
+[Cache Promises](#cache-promises)
 ## Cache Promise Class
 
 https://github.com/Namesonic/js/tree/master/cache
