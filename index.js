@@ -1,31 +1,3 @@
-
-/*
-* Cache Class
-*
-* Accepts ( Promise function for fetching the requested ID parameter )
-*
-* eg.  let Members = new Cache( (id) => {
-    return axios.get('member/' + id)
-  })
-*
-* eg. let Items = new Cache( (id) => {
-			return new Promise((resolve, reject) => {
-      	setTimeout(() => {
-            if (dataSource.find((data) => data.id == id)) {
-            	resolve(dataSource.find((data) => data.id == id))
-            } else {
-            	reject('This not found')
-            }
-        }, 2000)
-      })
-})
-*
-* Returns a matching "cache item" or "new cache item"
-*
-* - can be extended into Cache types like
-*	class MemberCache extends Cache ()
-*
-*/
 class Cache {
 	constructor (callback) {
   	this._items = []
@@ -42,24 +14,27 @@ class Cache {
       // Run the FETCH callback
       this._fetch(id)
         .then((resp) => {
+        	// get cache item
           let i = this.has(id)
           if (i) {
-            i.data = resp
-            i._cache.ready = true
+ 		        // Spread the response into this item
+	          Object.assign(i, {...resp})
+            // Set cache item ready state
+            i._ready = true
           }
         })
         .catch((err) => {
           let i = this.has(id)
           if (i) {
-            i._cache.ready = true
-            i._cache.error = err
+            i._ready = true
+            i._error = err
           }
         })
 
       return this._items.push({
-        id: id,
-        _cache: { ready: false }
-      })
+		id: id,
+		_ready: false
+	      })
 	  } else {
 			return item
 	  }
