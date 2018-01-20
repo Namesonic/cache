@@ -44,6 +44,17 @@ The callback function can accept paramters, in this example, the UNIQUE ID of th
 }
 ```
 
+## Items
+
+The cache class holds an array of item objects.  Item objects contain the following properties:
+
+<dl>
+  <dt>_ready</dt>
+  <dd>Has the loading of the cached item completed?</dd>
+  <dt>_error</dt>
+  <dd>An error message if an exception occurred</dd>
+</dl>
+
 ## Methods
 
 * remove(id)   # removes item from cache
