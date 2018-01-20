@@ -50,5 +50,16 @@ The callback function can accept paramters, in this example, the UNIQUE ID of th
 * has(id)      # returns bool if item is in cache
 * find(id)     # create item placeholder and use callback to fetch item data
 * all()        # returns array of all items in cache
+
+## Future Versions
+
+There are some things that would be good to add.
+
+### Methods
+
 * add(item)    # adds item to the cache
 * update(item) # updates the item data
+
+### Cache Expire
+
+Timestamp the activity on the cached item and remove the cached items that arren't being loaded.
