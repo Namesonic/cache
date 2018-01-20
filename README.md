@@ -2,4 +2,4 @@
 
 ## Cache Promise Class
 
-This class provides reactive references to a central API cache
+This class provides reactive references of a central, API promised based, cached item array.
