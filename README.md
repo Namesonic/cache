@@ -46,7 +46,9 @@ The callback function can accept paramters, in this example, the UNIQUE ID of th
 
 ## Methods
 
-* remove(id) # removes item from cache
-* has(id)    # returns bool if item is in cache
-* find(id)   # create item placeholder and use callback to fetch item data
-* all()      # returns array of all items in cache
+* remove(id)   # removes item from cache
+* has(id)      # returns bool if item is in cache
+* find(id)     # create item placeholder and use callback to fetch item data
+* all()        # returns array of all items in cache
+* add(item)    # adds item to the cache
+* update(item) # updates the item data
