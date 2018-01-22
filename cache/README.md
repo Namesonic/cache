@@ -46,7 +46,7 @@ The callback function can accept paramters, in this example, the UNIQUE ID of th
 
 ## Items
 
-The cache class holds an array of item objects.  Item objects contain the following properties:
+The cache class holds an array of "CachedItem"  objects.  Item objects contain the following properties:
 
 <dl>
   <dt>_ready</dt>
@@ -61,8 +61,9 @@ The cache class holds an array of item objects.  Item objects contain the follow
 
 * remove(id)   # removes item from cache
 * has(id)      # returns bool if item is in cache
-* find(id)     # create item placeholder and use callback to fetch item data
+* find(id)     # create item placeholder and use callback API to fetch item data
 * all()        # returns array of all items in cache
+* add()        # Add RAW data to the cache (skips API)
 
 ## Future Versions
 
