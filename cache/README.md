@@ -6,7 +6,7 @@ The find(id) method either fetches, or returns the cached item so that component
 
 Meant for use with VueJs
 
-Demo https://jsfiddle.net/oshaggy/w6qnonha/
+**New Demo** https://codepen.io/Namesonic/pen/BJEXzd
 
 ## Usage
 
