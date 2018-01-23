@@ -1,6 +1,6 @@
-# Cache Class
+# Promise Cache Class
 
-Useful javascript class for managing how to provide reactive references to a list of cached items that were/were not retrieved via a promise.
+> A useful javascript class for managing how to provide reactive references to a list of cached items that were **potentially** retrieved via a promise.
 
 The find(id) method either fetches, or returns the cached item so that components sharing a list can maintain a reactive reference to the original item.
 
@@ -31,7 +31,7 @@ data () {
 
 ## Constructor
 
-This class must be instiantiated with a call back function that returns a promise.  Usually this would be a Promise returned from an AJAX transport like axios.  Alternatively, you can return your own promise with the data you are caching.  
+This class must be instiantiated with a call back function that returns a promise.  Usually this would be a Promise returned from an AJAX transport like axios.  Alternatively, you can return your own promise with the data you are providing to the cache.  
 
 The callback function can accept paramters, in this example, the UNIQUE ID of the cached item that we are seeking.
 
@@ -59,11 +59,18 @@ The cache class holds an array of "CachedItem"  objects.  Item objects contain t
 
 ## Methods
 
-* remove(id)   # removes item from cache
-* has(id)      # returns bool if item is in cache
-* find(id)     # create item placeholder and use callback API to fetch item data
-* all()        # returns array of all items in cache
-* add()        # Add RAW data to the cache (skips API)
+<dl>
+  <dt>remove(id)</dt>
+  <dd>Removes the item from the cache array by its ID</dd>
+  <dt>has(id)</dt>
+  <dd>Returns boolean if item is present in the cache</dd>
+  <dt>find(id)</dt>
+  <dd>Returns the cached item locaed by its ID</dd>
+  <dt>all()</dt>
+  <dd>Returns an array of all the cached items</dd>
+  <dt>add(Object)</dt>
+  <dd>Adds a RAW data object to the cache</dd>
+</dl>
 
 ## Future Versions
 
