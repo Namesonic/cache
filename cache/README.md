@@ -1,31 +1,67 @@
 # Promise Cache Class
 
-> A useful javascript class for managing how to provide reactive references to a list of cached items that were **potentially** retrieved via a promise.
+> A useful javascript class for managing how to provide reactive references to a shared list of cached items retrieved via a promise, meant for use with VueJs.
 
-The find(id) method either fetches, or returns the cached item so that components sharing a list can maintain a reactive reference to the original item.
+Using the cache to find(id) an item either fetches data via the provided API, or returns the cached item data so that components sharing a list can maintain a reactive reference to the original item.
 
-Meant for use with VueJs
+Using a shared cache can limit multiple requests for the same item to a single API request, while still providing a "placeholder" item until the API's promise is resolve.
 
-**New Demo** https://codepen.io/Namesonic/pen/BJEXzd
+**Demo** https://codepen.io/Namesonic/pen/BJEXzd
 
 ## Usage
+
+In your Vue data structure:
 
 ```
 data () {
   return {
     myList: [ 1, 5, 7, 12, 18 ],
-    members: new Cache( (id) => {
-       return axios.get('member/' + id)
+    people: new Cache( (id) => {
+       return axios.get('people/' + id)
+      }),
+    cars: new Cache( id => {
+       return axios.get('cars/' + id)
       })
   }
 }
+```
 
-<div v-for="id in myList">
-  <div v-if="members.find(id)">
-    <div v-if="members.has(id)">
-      {{ members.has(id) }}
+In your Vue html markup:
+
+```
+<div v-for="item in people.list(myItems)" style="margin-bottom: 5px;">
+  <div style="float: left; padding-right: 5px;">
+    <button @click="removeMyItem(item.id)">
+      #{{item.id}}
+    </button>
+  </div>
+  <div style="float: left;" v-if="item.isReady">
+    <div v-if="item.hasError">
+      <i style="color:red;">{{item.error}}</i>
+    </div>
+    <div v-else>
+      {{item.data.name}}
+      <blockquote v-if="item.data.cars">
+        <div v-for="car in cars.list(item.data.cars)">
+          <div v-if="car.isReady">
+            <div v-if="car.hasError">
+              #{{car.id}} -> <i style="color: red">{{ car.error }}</i>
+            </div>
+            <div v-else>
+              #{{car.id}} -> {{ car.data.name }}
+            </div>
+          </div>
+          <div v-else>
+            #{{car.id}} -> Loading...
+          </div>
+        </div>
+      </blockquote>
     </div>
   </div>
+  <div v-else style="float: left;">
+    Loading...
+  </div>
+  <br clear="both"/>
 </div>
 ```
 
