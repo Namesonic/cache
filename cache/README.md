@@ -15,10 +15,16 @@ In your Vue data structure:
 ```
 data () {
   return {
+    // Define sepearate lists referencing overlapping items
     myList: [ 1, 5, 7, 12, 18 ],
+    yourList: [ 5, 6, 7, 10, 12, 13 ],
+
+    // Create the primary cache
     people: new Cache( (id) => {
        return axios.get('people/' + id)
       }),
+    
+    // In this example, the primary cache contains an array of IDs to a secondary cache
     cars: new Cache( id => {
        return axios.get('cars/' + id)
       })
@@ -83,6 +89,9 @@ The callback function can accept paramters, in this example, the UNIQUE ID of th
 ## Items
 
 The cache class holds an array of "CachedItem"  objects.  Item objects contain the following properties:
+
+
+**Variables**
 
 <dl>
   <dt>_ready</dt>
