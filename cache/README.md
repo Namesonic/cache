@@ -8,31 +8,60 @@ Using a shared cache can limit multiple requests for the same item to a single A
 
 **Demo** https://codepen.io/Namesonic/pen/BJEXzd
 
-## Usage
-
-In your Vue data structure:
+## Installation
 
 ```
-data () {
-  return {
-    // Define sepearate lists referencing overlapping items
-    myList: [ 1, 5, 7, 12, 18 ],
-    yourList: [ 5, 6, 7, 10, 12, 13 ],
+npm install vue-promise-cache -D
+```
 
-    // Create the primary cache
-    people: new Cache( (id) => {
-       return axios.get('people/' + id)
-      }),
-    
-    // In this example, the primary cache contains an array of IDs to a secondary cache
-    cars: new Cache( id => {
-       return axios.get('cars/' + id)
-      })
+## Usage
+
+Import where needed in your Vue data structure:
+
+```
+import Cache from 'vue-promise-cache'
+
+export default {
+  data () {
+    return {
+      // Define sepearate lists referencing overlapping items
+      myList: [ 1, 5, 7, 12, 18 ],
+      yourList: [ 5, 6, 7, 10, 12, 13 ],
+
+      // Create the primary cache
+      people: new Cache( (id) => {
+         return axios.get('people/' + id)
+        }),
+
+      // In this example, the primary cache contains an array of IDs to a secondary cache
+      cars: new Cache( id => {
+         return axios.get('cars/' + id)
+        })
+    }
   }
 }
 ```
 
-In your Vue html markup:
+Or in your VueX store state:
+
+```
+export default {
+  state: {
+    people: new Cache( id => axios.get('people/' + id )
+    cars: new Cache( id => axios.get('cars/' + id )
+  },
+  getters: {
+    person (state) => (id) => {
+      return state.people.find(id)
+    },
+    car (state) => (id) => {
+      return state.cars.find(id)
+    }    
+  }
+}
+```
+
+Then use in various ways in your Vue html markup, like this example:
 
 ```
 <div v-for="item in people.list(myItems)" style="margin-bottom: 5px;">
